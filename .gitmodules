@@ -1,0 +1,3 @@
+[submodule "submodules/kml_polygon"]
+	path = submodules/kml_polygon
+	url = git@github.com:mbrookes/kml_polygon.git
