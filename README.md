@@ -2,7 +2,7 @@
 
 Uses submodule `kml_polygon` to generate circles at the given location.
 
-Configurable options are at top of `generate_circles.js`. These options allow you to change:
+Configurable options are located in `config.js`. These options allow you to change:
 
 - `location_name`: Name to give KML Location
 - `folder_name`: Folder name to give for placemarks contained within
