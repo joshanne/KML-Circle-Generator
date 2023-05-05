@@ -87,8 +87,7 @@ def kml_star(lon, lat, radius, inner_radius, segments=10, rotate=0):
     return points_to_kml(points)
 
 def points_to_kml(points):
-    kmlOutput_points = f"""
-        <Polygon>
+    kmlOutput_points = f"""        <Polygon>
           <outerBoundaryIs>
             <LinearRing>
               <coordinates>
@@ -107,8 +106,9 @@ def generate_kml_styles():
     color_table = config["style_colors"]
     kml_string_style = ""
     for index, color_entry in reversed(list(enumerate(color_table))):
+        calc_index=len(color_table)-index-1
         kml_string_style += f'''
-    <Style id="polygon-{index}-normal">
+    <Style id="polygon-{calc_index}-normal">
       <LineStyle>
         <color>{color_entry[0]:08x}</color>
         <width>2</width>
@@ -119,7 +119,7 @@ def generate_kml_styles():
         <outline>1</outline>
       </PolyStyle>
     </Style>
-    <Style id="polygon-{index}-highlight">
+    <Style id="polygon-{calc_index}-highlight">
       <LineStyle>
         <color>{color_entry[0]:08x}</color>
         <width>2.8</width>
@@ -130,14 +130,14 @@ def generate_kml_styles():
         <outline>1</outline>
       </PolyStyle>
     </Style>
-    <StyleMap id="polygon-{index}">
+    <StyleMap id="polygon-{calc_index}">
       <Pair>
         <key>normal</key>
-        <styleUrl>#polygon-{index}-normal</styleUrl>
+        <styleUrl>#polygon-{calc_index}-normal</styleUrl>
       </Pair>
       <Pair>
         <key>highlight</key>
-        <styleUrl>#polygon-{index}-highlight</styleUrl>
+        <styleUrl>#polygon-{calc_index}-highlight</styleUrl>
       </Pair>
     </StyleMap>
 '''
@@ -152,10 +152,11 @@ def generate_kml_placemarks():
     loc_name = location["name"]
     kmlOutput_Placemarks = ""
     for index, radius in reversed(list(enumerate(array_radius))):
+        calc_index=len(array_radius)-index-1
         kmlOutput_Placemarks += f'''
       <Placemark>
         <name>{radius}m</name>
-        <styleUrl>#polygon-{index}</styleUrl>
+        <styleUrl>#polygon-{calc_index}</styleUrl>
 {kml_regular_polygon(longitude, latitude, radius, vertices)}
       </Placemark>'''
     return kmlOutput_Placemarks
