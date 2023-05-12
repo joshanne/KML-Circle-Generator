@@ -94,7 +94,7 @@ def points_to_kml(points):
 """
 
     for point in points:
-        kmlOutput_points += f"                {point[0]}, {point[1]}\n"
+        kmlOutput_points += f"                {point[0]},{point[1]}\n"
 
     kmlOutput_points += f"""              </coordinates>
             </LinearRing>
